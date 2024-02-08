@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import "./style.css";
+import { classNameCell } from "05-Shared/className";
 
 export type typeCellProps = {
   propsClassName?: string;
@@ -15,12 +16,8 @@ export const Cell: FC<typeCellProps> = ({
   propsCallBack,
   propsId,
 }) => {
-  const defaultClassName: string = "cell";
   const defaultId: string = propsId.toString();
-
-  const className: string = propsClassName
-    ? `${propsClassName} ${defaultClassName}`
-    : defaultClassName;
+  const className: string = propsClassName ? `${propsClassName} ${classNameCell}` : classNameCell;
 
   const content: any = propsContent ? propsContent : "Нет данных";
 

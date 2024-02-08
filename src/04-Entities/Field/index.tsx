@@ -6,10 +6,10 @@ import { createArrObjCell, typeCellObject } from "./lib/CreateArrObjCell";
 
 type typeFieldProps = {
   cellCount: number;
-  callBack: Function;
+  callBackHandle: Function;
 };
 
-export const Field: FC<typeFieldProps> = ({ cellCount, callBack }) => {
+export const Field: FC<typeFieldProps> = ({ cellCount, callBackHandle }) => {
   const [arrCell, setArrCell] = useState<React.ReactNode[]>([]);
   const [arrObjCells, setArrObjCells] = useState<typeCellObject[]>(createArrObjCell(cellCount));
 
@@ -17,13 +17,14 @@ export const Field: FC<typeFieldProps> = ({ cellCount, callBack }) => {
     const result: React.ReactNode[] = arrObjCells.map((element) => (
       <CreateCell
         propsId={element.id}
-        propsOnClick={callBack}
+        propsOnClick={callBackHandle}
         key={element.id}
         className="main__cell"
         typeEdifice={element.typeEdifice}
       />
     ));
     setArrCell(result);
+    console.log(arrObjCells);
   }, [arrObjCells]);
 
   return <div className="main__field">{arrCell}</div>;
