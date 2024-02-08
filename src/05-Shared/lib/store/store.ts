@@ -1,5 +1,5 @@
 import { legacy_createStore as createStore } from "redux";
-import { testReducer } from "./reducers";
+import { rootReducer } from "./reducers";
 
-export const store = createStore(testReducer);
+export const store = createStore(rootReducer);
 export type IRootState = ReturnType<typeof store.getState>;

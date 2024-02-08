@@ -17,7 +17,7 @@ export const Field: FC<typeFieldProps> = ({ cellCount, callBackHandle }) => {
   const [arrObjCells, setArrObjCells] = useState<typeCellObject[]>(createArrObjCell(cellCount));
 
   const dispatch = useDispatch();
-  const cash = useSelector((state: IRootState) => state?.cash);
+  const cash = useSelector((state: IRootState) => state.test.cash);
 
   const add = () => {
     dispatch({ type: enumActionTest.add, payload: 5 });
