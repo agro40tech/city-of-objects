@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-import "./Header.css";
+import "./style.css";
 
-const Header: FC = () => {
+export const Header: FC = () => {
   return (
     <header className="header">
       <h1 className="header__logo">City Of Objects</h1>
@@ -18,5 +18,3 @@ const Header: FC = () => {
     </header>
   );
 };
-
-export default Header;
