@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import "./style.css";
-import { classNameCell } from "05-Shared/className";
+import { classNameCell } from "05-Shared/lib/className";
 
 export type typeCellProps = {
   propsClassName?: string;
