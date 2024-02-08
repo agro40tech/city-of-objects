@@ -3,6 +3,7 @@ import { FC } from "react";
 import "./style.css";
 
 export enum enumEdificeType {
+  noneEdifice = "NONE_EDIFICE",
   mineGold = "MINE_GOLD",
 }
 
@@ -20,6 +21,11 @@ export const Edifice: FC<typeEdificeProps> = ({ typeEdifice }) => {
     case enumEdificeType.mineGold:
       edifice = "Шахта золота";
       className = `${defaultClassName} mine-gold`;
+      break;
+
+    case enumEdificeType.noneEdifice:
+      edifice = "Нет построек";
+      className = `${defaultClassName} none-edifice`;
       break;
 
     default:

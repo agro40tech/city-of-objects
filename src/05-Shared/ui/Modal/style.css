@@ -1,0 +1,6 @@
+.modal {
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  background-color: rgb(87, 86, 86);
+}

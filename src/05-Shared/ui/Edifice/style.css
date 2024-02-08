@@ -1,1 +1,3 @@
-
+.cell__edifice {
+  pointer-events: none;
+}
