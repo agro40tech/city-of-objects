@@ -1,11 +1,13 @@
 import { FC, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import "./style.css";
 import { CreateCell } from "./lib/CreateCell";
 import { createArrObjCell, typeCellObject } from "./lib/CreateArrObjCell";
-import { useDispatch, useSelector } from "react-redux";
+
 import { IRootState } from "05-Shared/lib/store";
-import { enumActionTest } from "05-Shared/lib/store/reducers";
+import { enumActionCell, typeObjCell } from "05-Shared/lib/store/reducers";
+
+import "./style.css";
 
 type typeFieldProps = {
   cellCount: number;
@@ -14,17 +16,24 @@ type typeFieldProps = {
 
 export const Field: FC<typeFieldProps> = ({ cellCount, callBackHandle }) => {
   const [arrCell, setArrCell] = useState<React.ReactNode[]>([]);
-  const [arrObjCells, setArrObjCells] = useState<typeCellObject[]>(createArrObjCell(cellCount));
 
   const dispatch = useDispatch();
-  const cash = useSelector((state: IRootState) => state.test.cash);
 
-  const add = () => {
-    dispatch({ type: enumActionTest.add, payload: 5 });
-  };
+  const arrObjChache: typeObjCell[] = JSON.parse(localStorage.getItem("arrObjCell") as string);
+
+  const arrObjCell: typeObjCell[] = useSelector(
+    (state: IRootState) => state.cell.arrObjCell
+  ) as typeObjCell[];
+
+  if (arrObjChache.length === 0) {
+    const arr: typeCellObject[] = createArrObjCell(cellCount);
+    arr.forEach((cell) => {
+      dispatch({ type: enumActionCell.newCell, payload: cell });
+    });
+  }
 
   useEffect(() => {
-    const result: React.ReactNode[] = arrObjCells.map((element) => (
+    const result: React.ReactNode[] = arrObjCell.map((element) => (
       <CreateCell
         propsId={element.id}
         propsOnClick={callBackHandle}
@@ -33,19 +42,10 @@ export const Field: FC<typeFieldProps> = ({ cellCount, callBackHandle }) => {
         typeEdifice={element.typeEdifice}
       />
     ));
-    setArrCell(result);
-    console.log(cash);
-  }, [arrObjCells, cash]);
 
-  return (
-    <div className="main__field">
-      {arrCell}{" "}
-      <button
-        onClick={() => {
-          add();
-        }}>
-        add
-      </button>
-    </div>
-  );
+    setArrCell(result);
+    console.log(arrObjCell);
+  }, [arrObjCell, callBackHandle]);
+
+  return <div className="main__field">{arrCell}</div>;
 };

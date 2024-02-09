@@ -24,8 +24,8 @@ export const Cell: FC<typeCellProps> = ({
   return propsCallBack ? (
     <div
       className={className}
-      onClick={() => {
-        propsCallBack();
+      onClick={(e) => {
+        propsCallBack(e);
       }}
       id={defaultId}>
       {content}
