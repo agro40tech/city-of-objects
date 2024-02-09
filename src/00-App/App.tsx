@@ -6,13 +6,18 @@ import { useDispatch } from "react-redux";
 import { createArrObjCell } from "04-Entities/Field/lib/CreateArrObjCell";
 import { enumActionCell } from "05-Shared/lib/store/reducers";
 
+const fieldConfig = {
+  cellCount: 10,
+};
+
 const App: FC = () => {
   const arrObjCellChache = localStorage.getItem("arrObjCell");
   const dispatch = useDispatch();
+
   if (!arrObjCellChache) {
+    const newArrObjCell = createArrObjCell(fieldConfig.cellCount);
+
     localStorage.setItem("arrObjCell", JSON.stringify([]));
-    const cellCount = 10;
-    const newArrObjCell = createArrObjCell(cellCount);
 
     dispatch({ type: enumActionCell.setArr, payload: newArrObjCell });
   } else {
