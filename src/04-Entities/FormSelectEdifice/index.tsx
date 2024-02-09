@@ -1,10 +1,11 @@
-import { FC, useState } from "react";
-import { useDispatch } from "react-redux";
+import { FC, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { enumActionCell } from "05-Shared/lib/store/reducers";
+import { enumActionCell, typeObjCell } from "05-Shared/lib/store/reducers";
 import { enumEdificeType } from "05-Shared";
 
 import "./style.css";
+import { IRootState } from "05-Shared/lib/store";
 
 type typeFormSelectEdifice = {
   callBackHandle: Function;
@@ -14,9 +15,25 @@ type typeFormSelectEdifice = {
 export const FormSelectEdifice: FC<typeFormSelectEdifice> = ({ callBackHandle, idClickCell }) => {
   const defaultStateChecked = "none";
   const dispatch = useDispatch();
+  const arrObjCell: typeObjCell[] = useSelector(
+    (state: IRootState) => state.cell.arrObjCell
+  ) as typeObjCell[];
 
   const [messageError, setMessageError] = useState<string>();
   const [checked, setChecked] = useState<string>(defaultStateChecked);
+  const [isNoneEdifice, setIsNoneEdifice] = useState<boolean>(false);
+
+  useEffect(() => {
+    arrObjCell.forEach((cell) => {
+      if (cell.id === Number(idClickCell)) {
+        if (cell.typeEdifice === enumEdificeType.noneEdifice) {
+          setIsNoneEdifice(true);
+        } else {
+          setIsNoneEdifice(false);
+        }
+      }
+    });
+  }, [idClickCell, arrObjCell]);
 
   return (
     <div className="modal__form-wrapper">
@@ -72,7 +89,6 @@ export const FormSelectEdifice: FC<typeFormSelectEdifice> = ({ callBackHandle, i
               };
 
               dispatch({ type: enumActionCell.changeCell, payload: cellObj });
-              setChecked("none");
               callBackHandle();
             } else {
               setMessageError("Выберите постройку");
@@ -80,22 +96,24 @@ export const FormSelectEdifice: FC<typeFormSelectEdifice> = ({ callBackHandle, i
           }}>
           Построить
         </button>
-        <button
-          className="form__submit-button"
-          onClick={(e: any) => {
-            e.preventDefault();
-            e.target.form.reset();
+        {!isNoneEdifice ? (
+          <button
+            className="form__submit-button"
+            onClick={(e: any) => {
+              e.preventDefault();
+              e.target.form.reset();
 
-            const cellObj = {
-              id: Number(idClickCell),
-              typeEdifice: enumEdificeType.noneEdifice,
-            };
+              const cellObj = {
+                id: Number(idClickCell),
+                typeEdifice: enumEdificeType.noneEdifice,
+              };
 
-            dispatch({ type: enumActionCell.changeCell, payload: cellObj });
-            callBackHandle();
-          }}>
-          Удалить постройку
-        </button>
+              dispatch({ type: enumActionCell.changeCell, payload: cellObj });
+              callBackHandle();
+            }}>
+            Удалить постройку
+          </button>
+        ) : null}
       </form>
     </div>
   );

@@ -10,6 +10,7 @@ export type typeDefaultStateCell = {
 export enum enumActionCell {
   newCell = "NEW__CELL",
   changeCell = "CHANGE__CELL",
+  setArr = "SET__ARR",
 }
 
 export type typeActionCell = {

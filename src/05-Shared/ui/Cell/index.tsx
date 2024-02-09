@@ -16,7 +16,7 @@ export const Cell: FC<typeCellProps> = ({
   propsCallBack,
   propsId,
 }) => {
-  const defaultId: string = propsId.toString();
+  const defaultId: string = typeof propsId === "number" ? propsId.toString() : propsId;
   const className: string = propsClassName ? `${propsClassName} ${classNameCell}` : classNameCell;
 
   const content: any = propsContent ? propsContent : "Нет данных";
