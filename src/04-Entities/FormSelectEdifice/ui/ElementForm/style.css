@@ -1,0 +1,23 @@
+.form__buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form__error-message {
+  color: red;
+  align-self: center;
+}
+
+.form__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.form__not-delete-button {
+  max-width: 100px;
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+}

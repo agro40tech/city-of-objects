@@ -40,6 +40,7 @@ export const FormSelectEdifice: FC<typeFormSelectEdificeProps> = ({
         onClick={(e: any) => {
           e.target.nextSibling.reset();
           setMessageError("");
+          setChecked(defaultStateChecked);
           callBackHandle(false);
         }}>
         x

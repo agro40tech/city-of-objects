@@ -22,7 +22,7 @@ export const Field: FC<typeFieldProps> = ({ callBackHandle }) => {
         propsId={element.id}
         propsOnClick={callBackHandle}
         key={element.id}
-        className="main__cell"
+        className="field__cell"
         typeEdifice={element.typeEdifice}
       />
     ));

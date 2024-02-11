@@ -2,10 +2,6 @@ import { configPriceEdifice } from "./config";
 
 import { enumActionMony, enumEdificeType } from "05-Shared";
 
-const messageError = () => {
-  console.log("Не хватает денег(");
-};
-
 export const BuyEdifice = (typeEdifice: string, countMoney: number, dispath: Function) => {
   switch (typeEdifice) {
     case enumEdificeType.mineGoldOneLVL:
@@ -13,7 +9,6 @@ export const BuyEdifice = (typeEdifice: string, countMoney: number, dispath: Fun
         dispath({ type: enumActionMony.take, payload: configPriceEdifice.MINE_GOLD_LVL_ONE });
         return true;
       } else {
-        messageError();
         return false;
       }
 
@@ -22,7 +17,6 @@ export const BuyEdifice = (typeEdifice: string, countMoney: number, dispath: Fun
         dispath({ type: enumActionMony.take, payload: configPriceEdifice.MINE_GOLD_LVL_TWO });
         return true;
       } else {
-        messageError();
         return false;
       }
 

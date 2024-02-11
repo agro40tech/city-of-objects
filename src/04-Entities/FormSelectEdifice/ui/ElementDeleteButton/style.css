@@ -1,0 +1,6 @@
+.form__delete-button {
+  max-width: 100px;
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+}

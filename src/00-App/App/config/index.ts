@@ -1,5 +1,5 @@
 export const config = {
-  cellCount: 10,
+  cellCount: 50,
   defaultMoney: 10,
   defaultMoneyPeerSecond: 0,
 };

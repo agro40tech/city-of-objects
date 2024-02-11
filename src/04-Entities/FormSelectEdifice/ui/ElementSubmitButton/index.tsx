@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { typeElementSubmitButtonProps } from "04-Entities/FormSelectEdifice/lib/type";
 import { enumActionCell } from "05-Shared";
 
+import "./style.css";
+
 export const ElementSubmitButton: FC<typeElementSubmitButtonProps> = ({
   BuyEdifice,
   countMoney,
@@ -12,6 +14,7 @@ export const ElementSubmitButton: FC<typeElementSubmitButtonProps> = ({
   defaultStateChecked,
   idClickCell,
   setMessageError,
+  setChecked,
 }) => {
   const dispatch = useDispatch();
 
@@ -28,6 +31,8 @@ export const ElementSubmitButton: FC<typeElementSubmitButtonProps> = ({
               id: Number(idClickCell),
               typeEdifice: checked,
             };
+            setMessageError("");
+            setChecked(defaultStateChecked);
             dispatch({ type: enumActionCell.changeCell, payload: cellObj });
             callBackHandle();
           } else {

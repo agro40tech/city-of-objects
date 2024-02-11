@@ -11,6 +11,8 @@ import {
   typeCellObject,
 } from "05-Shared";
 
+import "./style.css";
+
 export const ElementMoney: FC = () => {
   const countMony: number = useSelector((state: IRootState) => state.money.money);
   const moneyPeerSecond: number = useSelector((state: IRootState) => state.money.moneyPeerSecond);
@@ -35,7 +37,7 @@ export const ElementMoney: FC = () => {
     setMoneyPeerSecond(arrEdifices, dispath);
   }, [arrObjCell, dispath]);
 
-  // Добавление монет раз в 1 секунуду на кол-во МВС
+  // Добавление монет раз в 1 секунду на кол-во МВС
   useEffect(() => {
     if (moneyPeerSecond !== 0) {
       const intervalId = setInterval(() => {
@@ -47,12 +49,16 @@ export const ElementMoney: FC = () => {
   }, [moneyPeerSecond, dispath]);
 
   return (
-    <div>
-      <Money propsCountMony={countMony} propsClassName="header__count-money" />{" "}
-      <MoneyPeerSecond
-        propsCountMonyPeerSecond={moneyPeerSecond}
-        propsClassName="header__money-peer-second"
-      />
-    </div>
+    <ul className="header__list">
+      <li className="list__item">
+        <Money propsCountMony={countMony} propsClassName="item__count-money" />
+      </li>
+      <li className="list__item">
+        <MoneyPeerSecond
+          propsCountMonyPeerSecond={moneyPeerSecond}
+          propsClassName="item__money-peer-second"
+        />
+      </li>
+    </ul>
   );
 };

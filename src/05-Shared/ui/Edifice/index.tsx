@@ -30,7 +30,7 @@ export const Edifice: FC<typeEdificeProps> = ({ typeEdifice }) => {
       break;
 
     case enumEdificeType.noneEdifice:
-      edifice = "Нет построек";
+      edifice = "";
       className = `${classNameEdifice} none-edifice`;
       break;
 

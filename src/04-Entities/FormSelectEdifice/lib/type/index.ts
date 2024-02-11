@@ -16,10 +16,12 @@ export type ElementFormProps = {
 export type typeElementDeleteButtonProps = {
   idClickCell: number;
   callBackHandle: Function;
+  setMessageError: Function;
 };
 
 export type typeElementSubmitButtonProps = {
   checked: string;
+  setChecked: Function;
   defaultStateChecked: string;
   BuyEdifice: Function;
   countMoney: number;
