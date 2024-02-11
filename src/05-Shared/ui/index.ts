@@ -1,4 +1,5 @@
 export * from "./Cell";
 export * from "./Edifice";
 export * from "./Modal";
-export * from "./Mony";
+export * from "./Money";
+export * from "./MoneyPeerSecond";

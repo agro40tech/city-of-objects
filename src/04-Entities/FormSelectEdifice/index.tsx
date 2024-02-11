@@ -6,6 +6,7 @@ import { enumEdificeType } from "05-Shared";
 
 import "./style.css";
 import { IRootState } from "05-Shared/lib/store";
+import { BuyEdifice } from "./lib/BuyEdifice";
 
 type typeFormSelectEdifice = {
   callBackHandle: Function;
@@ -15,6 +16,8 @@ type typeFormSelectEdifice = {
 export const FormSelectEdifice: FC<typeFormSelectEdifice> = ({ callBackHandle, idClickCell }) => {
   const defaultStateChecked = "none";
   const dispatch = useDispatch();
+  const countMoney: number = useSelector((state: IRootState) => state.money.money) as number;
+
   const arrObjCell: typeObjCell[] = useSelector(
     (state: IRootState) => state.cell.arrObjCell
   ) as typeObjCell[];
@@ -41,6 +44,7 @@ export const FormSelectEdifice: FC<typeFormSelectEdifice> = ({ callBackHandle, i
         className="modal__button-close"
         onClick={(e: any) => {
           e.target.nextSibling.reset();
+          setMessageError("");
           callBackHandle(false);
         }}>
         x
@@ -83,13 +87,16 @@ export const FormSelectEdifice: FC<typeFormSelectEdifice> = ({ callBackHandle, i
             if (checked !== defaultStateChecked) {
               e.target.form.reset();
 
-              const cellObj = {
-                id: Number(idClickCell),
-                typeEdifice: checked,
-              };
-
-              dispatch({ type: enumActionCell.changeCell, payload: cellObj });
-              callBackHandle();
+              if (BuyEdifice(checked, countMoney, dispatch)) {
+                const cellObj = {
+                  id: Number(idClickCell),
+                  typeEdifice: checked,
+                };
+                dispatch({ type: enumActionCell.changeCell, payload: cellObj });
+                callBackHandle();
+              } else {
+                setMessageError("Тебе не хватает денек((");
+              }
             } else {
               setMessageError("Выберите постройку");
             }

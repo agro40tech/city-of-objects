@@ -8,7 +8,7 @@ type typeMonyProps = {
   propsClassName?: string;
 };
 
-export const Mony: FC<typeMonyProps> = ({ propsCountMony, propsClassName }) => {
+export const Money: FC<typeMonyProps> = ({ propsCountMony, propsClassName }) => {
   const className: string = propsClassName ? `${propsClassName} ${classNameMoney}` : classNameMoney;
   const message: string = "Монет: ";
 
