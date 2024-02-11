@@ -9,7 +9,6 @@ export const monyReducer = (state = defaultState, action: typeActionMony) => {
   switch (action.type) {
     case "ADD":
       localStorage.setItem("money", (state.money + action.payload).toString());
-      console.log(state.money, action.payload);
       return { ...state, money: state.money + action.payload };
 
     case "TAKE":

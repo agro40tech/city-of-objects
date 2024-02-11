@@ -1,21 +1,30 @@
-import { typeCellObject } from "04-Entities/Field/lib/CreateArrObjCell";
-import { IRootState, Money, MoneyPeerSecond, enumActionMony, enumEdificeType } from "05-Shared";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setMoneyPeerSecond } from "./lib/SetMoneyPeerSecond";
+
+import {
+  IRootState,
+  Money,
+  MoneyPeerSecond,
+  enumActionMony,
+  enumEdificeType,
+  setMoneyPeerSecond,
+  typeCellObject,
+} from "05-Shared";
 
 export const ElementMoney: FC = () => {
-  const countMony: number = useSelector((state: IRootState) => state.money.money) as number;
+  const countMony: number = useSelector((state: IRootState) => state.money.money);
+  const moneyPeerSecond: number = useSelector((state: IRootState) => state.money.moneyPeerSecond);
+
   const arrObjCell: typeCellObject[] = useSelector(
     (state: IRootState) => state.cell.arrObjCell
   ) as typeCellObject[];
 
-  const moneyPeerSecond: number = useSelector((state: IRootState) => state.money.moneyPeerSecond);
-
   const dispath = useDispatch();
 
+  // Обновление кол-во МВС
   useEffect(() => {
     const arrEdifices: string[] = [];
+
     arrObjCell.forEach((cell) => {
       if (cell.typeEdifice !== enumEdificeType.noneEdifice) {
         arrEdifices.push(cell.typeEdifice);
@@ -24,8 +33,9 @@ export const ElementMoney: FC = () => {
 
     dispath({ type: enumActionMony.resetMoneyPeerSecond });
     setMoneyPeerSecond(arrEdifices, dispath);
-  }, [arrObjCell]);
+  }, [arrObjCell, dispath]);
 
+  // Добавление монет раз в 1 секунуду на кол-во МВС
   useEffect(() => {
     if (moneyPeerSecond !== 0) {
       const intervalId = setInterval(() => {
@@ -34,17 +44,15 @@ export const ElementMoney: FC = () => {
 
       return () => clearInterval(intervalId);
     }
-  }, [moneyPeerSecond]);
+  }, [moneyPeerSecond, dispath]);
 
   return (
-    <>
-      <div>
-        <Money propsCountMony={countMony} propsClassName="header__count-money" />{" "}
-        <MoneyPeerSecond
-          propsCountMonyPeerSecond={moneyPeerSecond}
-          propsClassName="header__money-peer-second"
-        />
-      </div>
-    </>
+    <div>
+      <Money propsCountMony={countMony} propsClassName="header__count-money" />{" "}
+      <MoneyPeerSecond
+        propsCountMonyPeerSecond={moneyPeerSecond}
+        propsClassName="header__money-peer-second"
+      />
+    </div>
   );
 };

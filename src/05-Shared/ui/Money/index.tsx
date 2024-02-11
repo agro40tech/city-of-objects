@@ -1,5 +1,6 @@
-import { classNameMoney } from "05-Shared/lib/className";
 import { FC } from "react";
+
+import { classNameMoney } from "05-Shared/lib/className";
 
 import "./style.css";
 

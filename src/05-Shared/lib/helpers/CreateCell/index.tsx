@@ -1,5 +1,6 @@
-import { Cell, Edifice, enumEdificeType } from "05-Shared";
 import { FC } from "react";
+
+import { Cell, Edifice, enumEdificeType } from "05-Shared";
 
 type typeCreateCellProps = {
   className: string;

@@ -1,7 +1,8 @@
 import { FC } from "react";
 
-import "./style.css";
 import { classNameEdifice } from "05-Shared/lib/className";
+
+import "./style.css";
 
 export enum enumEdificeType {
   noneEdifice = "NONE_EDIFICE",

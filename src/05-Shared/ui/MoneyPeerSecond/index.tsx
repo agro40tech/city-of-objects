@@ -1,5 +1,6 @@
-import { classNameMoneyPeerSecond } from "05-Shared/lib/className";
 import { FC } from "react";
+
+import { classNameMoneyPeerSecond } from "05-Shared/lib/className";
 
 type typeMonyProps = {
   propsCountMonyPeerSecond: number;

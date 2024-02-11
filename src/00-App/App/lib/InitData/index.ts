@@ -1,21 +1,8 @@
-import { FC } from "react";
-import "./style/style.css";
+import { config } from "00-App/App/config";
+import { createArrObjCell, enumActionCell, enumActionMony } from "05-Shared";
 
-import { HomePage } from "01-Pages";
-import { useDispatch } from "react-redux";
-import { createArrObjCell } from "04-Entities/Field/lib/CreateArrObjCell";
-import { enumActionCell } from "05-Shared/lib/store/reducers";
-import { enumActionMony } from "05-Shared/lib/store/reducers/MonyReducer/types";
-
-const config = {
-  cellCount: 10,
-  defaultMoney: 10,
-  defaultMoneyPeerSecond: 0,
-};
-
-const App: FC = () => {
+export const initData = (dispatch: Function) => {
   const arrObjCellChache = localStorage.getItem("arrObjCell");
-  const dispatch = useDispatch();
 
   if (!arrObjCellChache) {
     const newArrObjCell = createArrObjCell(config.cellCount);
@@ -44,12 +31,4 @@ const App: FC = () => {
       payload: Number(localStorage.getItem("money")),
     });
   }
-
-  return (
-    <>
-      <HomePage />
-    </>
-  );
 };
-
-export default App;

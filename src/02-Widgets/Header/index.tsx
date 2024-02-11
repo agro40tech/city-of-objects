@@ -1,7 +1,8 @@
 import { FC } from "react";
 
-import "./style.css";
 import { ElementMoney } from "04-Entities";
+
+import "./style.css";
 
 export const Header: FC = () => {
   return (

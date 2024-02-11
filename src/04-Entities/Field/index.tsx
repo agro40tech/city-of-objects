@@ -1,16 +1,15 @@
 import { FC, useEffect, useState } from "react";
-import "./style.css";
 import { useSelector } from "react-redux";
-import { CreateCell } from "./lib/CreateCell";
-import { IRootState } from "05-Shared/lib/store";
-import { typeObjCell } from "05-Shared/lib/store/reducers";
+
+import { CreateCell, IRootState, typeObjCell } from "05-Shared";
+
+import "./style.css";
 
 type typeFieldProps = {
-  cellCount: number;
   callBackHandle: Function;
 };
 
-export const Field: FC<typeFieldProps> = ({ cellCount, callBackHandle }) => {
+export const Field: FC<typeFieldProps> = ({ callBackHandle }) => {
   const [arrCell, setArrCell] = useState<React.ReactNode[]>([]);
 
   const arrObjCell: typeObjCell[] = useSelector(
@@ -29,7 +28,6 @@ export const Field: FC<typeFieldProps> = ({ cellCount, callBackHandle }) => {
     ));
 
     setArrCell(result);
-    console.log(arrObjCell);
   }, [arrObjCell, callBackHandle]);
 
   return <div className="main__field">{arrCell}</div>;

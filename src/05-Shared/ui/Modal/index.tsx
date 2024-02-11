@@ -1,6 +1,8 @@
 import { FC } from "react";
-import "./style.css";
+
 import { classNameModal } from "05-Shared/lib/className";
+
+import "./style.css";
 
 type typeModal = {
   propsClassName: string;

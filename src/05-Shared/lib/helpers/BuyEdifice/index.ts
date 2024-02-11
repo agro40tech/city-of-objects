@@ -1,7 +1,6 @@
-import { IRootState, enumActionMony, enumEdificeType } from "05-Shared";
-
-import { useDispatch, useSelector } from "react-redux";
 import { configPriceEdifice } from "./config";
+
+import { enumActionMony, enumEdificeType } from "05-Shared";
 
 const messageError = () => {
   console.log("Не хватает денег(");
