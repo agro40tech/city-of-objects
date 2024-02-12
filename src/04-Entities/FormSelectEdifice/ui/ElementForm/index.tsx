@@ -9,6 +9,19 @@ import { ElementFormProps } from "04-Entities/FormSelectEdifice/lib/type";
 
 import { BuyEdifice, IRootState, enumEdificeType } from "05-Shared";
 
+import {
+  classNameFormButtons,
+  classNameFormButtonsWrapper,
+  classNameFormErrorMessage,
+  classNameFormFormNotDeleteButton,
+  classNameFormMessage,
+  classNameModalForm,
+  classNameRadioContainer,
+  classNameRadioInput,
+  classNameRadioLabel,
+  classNameRadioTitle,
+} from "04-Entities/FormSelectEdifice/lib";
+
 import "./style.css";
 
 export const ElementForm: FC<ElementFormProps> = ({
@@ -23,12 +36,12 @@ export const ElementForm: FC<ElementFormProps> = ({
   const countMoney: number = useSelector((state: IRootState) => state.money.money);
 
   return (
-    <form className="modal__form">
+    <form className={classNameModalForm}>
       {isNoneEdifice ? (
-        <div className="radio-container">
-          <label className="radio-label">
+        <div className={classNameRadioContainer}>
+          <label className={classNameRadioLabel}>
             <input
-              className="radio"
+              className={classNameRadioInput}
               type="radio"
               name="mineGold"
               id={enumEdificeType.mineGoldOneLVL}
@@ -36,12 +49,12 @@ export const ElementForm: FC<ElementFormProps> = ({
                 setChecked(enumEdificeType.mineGoldOneLVL);
               }}
             />
-            <span className="radio-title">Золотая шахта 1 уровня</span>
-            <span className="radio-title">10 монет</span>
+            <span className={classNameRadioTitle}>Золотая шахта 1 уровня</span>
+            <span className={classNameRadioTitle}>10 монет</span>
           </label>
-          <label className="radio-label">
+          <label className={classNameRadioLabel}>
             <input
-              className="radio"
+              className={classNameRadioInput}
               type="radio"
               name="mineGold"
               id={enumEdificeType.mineGoldTwoLVL}
@@ -49,17 +62,18 @@ export const ElementForm: FC<ElementFormProps> = ({
                 setChecked(enumEdificeType.mineGoldTwoLVL);
               }}
             />
-            <span className="radio-title">Золотая шахта 2 уровня</span>
-            <span className="radio-title">20 монет</span>
+            <span className={classNameRadioTitle}>Золотая шахта 2 уровня</span>
+            <span className={classNameRadioTitle}>20 монет</span>
           </label>
         </div>
       ) : (
-        <div className="form__message">Вы хотите удалить постройку?</div>
+        <div className={classNameFormMessage}>Вы хотите удалить постройку?</div>
       )}
 
-      <div className="form__buttons-wrapper">
-        {messageError ? <span className="form__error-message">{messageError}</span> : null}
-        <div className="form__buttons">
+      <div className={classNameFormButtonsWrapper}>
+        {messageError ? <span className={classNameFormErrorMessage}>{messageError}</span> : null}
+
+        <div className={classNameFormButtons}>
           {isNoneEdifice ? (
             <ElementSubmitButton
               BuyEdifice={BuyEdifice}
@@ -74,7 +88,7 @@ export const ElementForm: FC<ElementFormProps> = ({
           ) : (
             <>
               <button
-                className="form__not-delete-button"
+                className={classNameFormFormNotDeleteButton}
                 onClick={(e: any) => {
                   e.preventDefault();
                   e.target.form.reset();

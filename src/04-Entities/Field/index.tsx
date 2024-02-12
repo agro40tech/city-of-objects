@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import { CreateCell, IRootState, typeObjCell } from "05-Shared";
 
+import { classNameFieldCell, classNameMainField } from "./lib";
 import "./style.css";
 
 type typeFieldProps = {
@@ -22,7 +23,7 @@ export const Field: FC<typeFieldProps> = ({ callBackHandle }) => {
         propsId={element.id}
         propsOnClick={callBackHandle}
         key={element.id}
-        className="field__cell"
+        className={classNameFieldCell}
         typeEdifice={element.typeEdifice}
       />
     ));
@@ -30,5 +31,5 @@ export const Field: FC<typeFieldProps> = ({ callBackHandle }) => {
     setArrCell(result);
   }, [arrObjCell, callBackHandle]);
 
-  return <div className="main__field">{arrCell}</div>;
+  return <div className={classNameMainField}>{arrCell}</div>;
 };

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { typeElementDeleteButtonProps } from "04-Entities/FormSelectEdifice/lib/type";
 import { enumActionCell, enumEdificeType } from "05-Shared";
 
+import { classNameFormDeleteButton } from "04-Entities/FormSelectEdifice/lib";
 import "./style.css";
 
 export const ElementDeleteButton: FC<typeElementDeleteButtonProps> = ({
@@ -15,7 +16,7 @@ export const ElementDeleteButton: FC<typeElementDeleteButtonProps> = ({
 
   return (
     <button
-      className="form__delete-button"
+      className={classNameFormDeleteButton}
       onClick={(e: any) => {
         e.preventDefault();
         e.target.form.reset();

@@ -11,6 +11,7 @@ import {
   typeCellObject,
 } from "05-Shared";
 
+import { classNameHeaderList, classNameListItem } from "./lib";
 import "./style.css";
 
 export const ElementMoney: FC = () => {
@@ -49,11 +50,11 @@ export const ElementMoney: FC = () => {
   }, [moneyPeerSecond, dispath]);
 
   return (
-    <ul className="header__list">
-      <li className="list__item">
+    <ul className={classNameHeaderList}>
+      <li className={classNameListItem}>
         <Money propsCountMony={countMony} propsClassName="item__count-money" />
       </li>
-      <li className="list__item">
+      <li className={classNameListItem}>
         <MoneyPeerSecond
           propsCountMonyPeerSecond={moneyPeerSecond}
           propsClassName="item__money-peer-second"

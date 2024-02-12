@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { typeElementSubmitButtonProps } from "04-Entities/FormSelectEdifice/lib/type";
 import { enumActionCell } from "05-Shared";
 
+import { classNameFormSubmitButton } from "04-Entities/FormSelectEdifice/lib";
 import "./style.css";
 
 export const ElementSubmitButton: FC<typeElementSubmitButtonProps> = ({
@@ -20,7 +21,7 @@ export const ElementSubmitButton: FC<typeElementSubmitButtonProps> = ({
 
   return (
     <button
-      className="form__submit-button"
+      className={classNameFormSubmitButton}
       onClick={(e: any) => {
         e.preventDefault();
         if (checked !== defaultStateChecked) {

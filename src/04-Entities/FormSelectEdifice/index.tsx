@@ -7,6 +7,7 @@ import { ElementForm } from "./ui/ElementForm";
 
 import { IRootState, enumEdificeType, typeObjCell } from "05-Shared";
 
+import { classNameModalButtonClose, classNameModalFormWrapper } from "./lib";
 import "./style.css";
 
 export const FormSelectEdifice: FC<typeFormSelectEdificeProps> = ({
@@ -34,9 +35,9 @@ export const FormSelectEdifice: FC<typeFormSelectEdificeProps> = ({
   }, [idClickCell, arrObjCell]);
 
   return (
-    <div className="modal__form-wrapper">
+    <div className={classNameModalFormWrapper}>
       <button
-        className="modal__button-close"
+        className={classNameModalButtonClose}
         onClick={(e: any) => {
           e.target.nextSibling.reset();
           setMessageError("");
