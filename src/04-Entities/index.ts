@@ -1,3 +1,3 @@
 export * from "./Field";
-export * from "./FormSelectEdifice";
+export * from "./FormEdifice";
 export * from "./ElementMoney";

@@ -3,3 +3,4 @@ export * from "./Edifice";
 export * from "./Modal";
 export * from "./Money";
 export * from "./MoneyPeerSecond";
+export * from "./Button";
